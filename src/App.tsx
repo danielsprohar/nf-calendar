@@ -1,4 +1,4 @@
-import CalendarMini from './components/calendar-mini/CalendarMini'
+import CalendarMini from './components/calendar/month/CalendarMonth'
 
 function App() {
   return (

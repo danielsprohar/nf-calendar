@@ -1,0 +1,32 @@
+export default function CalendarSearchInput() {
+  return (
+    <div className="relative">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="absolute left-1 top-[6px] size-4 text-zinc-400"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+        />
+      </svg>
+      <form
+        action="#"
+        method="get"
+      >
+        <input
+          type="search"
+          name="searchCalendar"
+          id="searchCalendarInput"
+          placeholder="Search"
+          className="pl-6 pr-1 py-[2px] rounded border border-zinc-200 dark:border-zinc-600"
+        />
+      </form>
+    </div>
+  )
+}

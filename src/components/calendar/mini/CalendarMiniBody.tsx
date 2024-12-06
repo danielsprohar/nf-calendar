@@ -30,11 +30,14 @@ export default function CalendarMiniBody() {
           key={day.toISOString()}
         >
           <div
-            className={
+            className={`${
               isSameDay(today, day)
                 ? '-ml-1 w-6 h-full rounded-full bg-zinc-900 text-white dark:bg-zinc-200 dark:text-black'
                 : ''
-            }
+            } ${
+              today.getMonth() !== day.getMonth() &&
+              'text-zinc-600 dark:text-zinc-400'
+            }`}
           >
             {day.getDate() === 1
               ? firstOfMonthFormatter.format(day)

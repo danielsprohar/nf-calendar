@@ -22,7 +22,7 @@ export default function CalendarMiniBody() {
   }
 
   return (
-    <div className="flex-1 grid grid-cols-7 grid-rows-5">
+    <div className="flex-1 grid grid-cols-7 grid-rows-5 text-sm">
       {days.map((day) => (
         <button
           aria-label={day.toDateString()}

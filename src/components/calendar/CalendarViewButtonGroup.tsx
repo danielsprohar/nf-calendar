@@ -5,7 +5,7 @@ export default function CalendarViewButtonGroup() {
   }
 
   return (
-    <div className="flex items-center rounded border border-zinc-200 dark:border-zinc-800 divide-x divide-zinc-200 dark:divide-zinc-800">
+    <div className="flex items-center rounded border border-zinc-200 dark:border-zinc-600 divide-x divide-zinc-200 dark:divide-zinc-600">
       <button
         className="px-2 py-1 text-xs hover:bg-zinc-200 dark:hover:bg-zinc-800"
         aria-label="Change to day view"

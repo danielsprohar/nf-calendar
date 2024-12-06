@@ -15,7 +15,10 @@ export default function CalendarMiniHeader({
   return (
     <div className="flex flex-col">
       <div className="px-2 flex items-center justify-between">
-        <button aria-label="Previous month">
+        <button
+          aria-label="Previous month"
+          data-test-id="MiniCalendarPrevMonth"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -37,7 +40,10 @@ export default function CalendarMiniHeader({
         >
           {dateFormatter.format(date)}
         </div>
-        <button aria-label="Next month">
+        <button
+          aria-label="Next month"
+          data-test-id="MiniCalendarNextMonth"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

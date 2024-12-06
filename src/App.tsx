@@ -1,3 +1,4 @@
+import CalendarHeader from './components/calendar/CalendarHeader'
 import CalendarMini from './components/calendar/mini/CalendarMini'
 import CalendarMonth from './components/calendar/month/CalendarMonth'
 
@@ -12,7 +13,8 @@ function App() {
         <CalendarMini />
       </div>
       {/* Main */}
-      <main className="flex-1">
+      <main className="flex-1 flex flex-col">
+        <CalendarHeader />
         <CalendarMonth />
       </main>
     </div>

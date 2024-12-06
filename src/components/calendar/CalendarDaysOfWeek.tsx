@@ -7,6 +7,7 @@ export default function CalendarDaysOfWeek({
   abbreviated = false,
 }: CalendarDaysOfWeekProps) {
   const startDate = new Date()
+  startDate.setDate(6 - startDate.getDay())
   const daysOfWeek: Date[] = []
 
   const dayOfWeekFormatter = new Intl.DateTimeFormat('en-US', {

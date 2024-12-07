@@ -15,8 +15,8 @@ export function getEndDate(date: Date) {
 
 export function isSameDay(date: Date, date2: Date) {
   return (
-    date.getDate() === date2.getDate() &&
+    date.getFullYear() === date2.getFullYear() &&
     date.getMonth() === date2.getMonth() &&
-    date.getFullYear() === date2.getFullYear()
+    date.getDate() === date2.getDate()
   )
 }

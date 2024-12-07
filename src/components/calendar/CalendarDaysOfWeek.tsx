@@ -26,7 +26,7 @@ export default function CalendarDaysOfWeek({
         daysOfWeek.map((day) => (
           <div
             key={day.getTime()}
-            className="px-2 py-1 text-center text-xs"
+            className="px-2 py-1 text-center text-xs text-zinc-600 dark:text-zinc-400"
           >
             {abbreviated
               ? dayOfWeekFormatter.format(day).charAt(0)

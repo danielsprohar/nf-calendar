@@ -28,11 +28,13 @@ export default function CalendarMonthBody() {
             {/* Header  */}
             <div className="px-2 py-1 text-center">
               <div
-                className={
-                  isSameDay(today, day)
-                    ? 'rounded-full bg-zinc-900 text-white dark:bg-zinc-200 dark:text-black'
-                    : ''
-                }
+                className={`${
+                  isSameDay(today, day) &&
+                  'rounded-full bg-zinc-900 text-white dark:bg-zinc-200 dark:text-black'
+                } ${
+                  today.getMonth() !== day.getMonth() &&
+                  'text-zinc-600 dark:text-zinc-400'
+                }`}
               >
                 {day.getDate() === 1
                   ? firstOfMonthFormatter.format(day)

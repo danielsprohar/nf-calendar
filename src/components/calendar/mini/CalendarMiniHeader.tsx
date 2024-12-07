@@ -5,8 +5,11 @@ import {
 } from '../../../contexts/CalendarContext'
 import CalendarDaysOfWeek from '../CalendarDaysOfWeek'
 
-export default function CalendarMiniHeader() {
-  const calendar = useCalendar()
+interface Props {
+  date: Date
+}
+
+export default function CalendarMiniHeader({ date }: Props) {
   const dispatch = useCalendarDispatch()
 
   const dateFormatter = new Intl.DateTimeFormat('en-US', {
@@ -47,12 +50,14 @@ export default function CalendarMiniHeader() {
             />
           </svg>
         </button>
+
         <div
           className="font-semibold"
           role="heading"
         >
-          {dateFormatter.format(calendar.currentDate)}
+          {dateFormatter.format(date)}
         </div>
+
         <button
           aria-label="Next month"
           data-test-id="MiniCalendarNextMonth"

@@ -1,8 +1,9 @@
+import { useCalendar } from '../../contexts/CalendarContext'
 import CalendarSearchInput from './CalendarSearchInput'
 import CalendarViewButtonGroup from './CalendarViewButtonGroup'
 
 export default function CalendarHeader() {
-  const date = new Date()
+  const calendar = useCalendar()
   const monthFormatter = new Intl.DateTimeFormat('en-US', {
     month: 'long',
   })
@@ -42,8 +43,11 @@ export default function CalendarHeader() {
           role="heading"
           className="text-2xl"
         >
-          <span className="font-bold">{monthFormatter.format(date)}</span>&nbsp;
-          <span>{yearFormatter.format(date)}</span>
+          <span className="font-bold">
+            {monthFormatter.format(calendar.currentDate)}
+          </span>
+          &nbsp;
+          <span>{yearFormatter.format(calendar.currentDate)}</span>
         </div>
 
         <div className="flex items-center justify-between gap-x-1">

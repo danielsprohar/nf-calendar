@@ -5,7 +5,7 @@ import { CalendarProvider } from './contexts/CalendarContext'
 function App() {
   return (
     <CalendarProvider>
-      <div className="h-full overflow-hidden flex">
+      <div className="flex h-screen overflow-y-hidden">
         {/* Sidebar */}
         <div className="w-52 h-screen flex flex-col bg-zinc-100 dark:bg-zinc-900">
           <nav className="flex-1">
@@ -14,7 +14,7 @@ function App() {
           <CalendarMini />
         </div>
         {/* Main */}
-        <main className="flex-1 flex flex-col">
+        <main className="flex-1 flex flex-col overflow-y-hidden">
           <Calendar />
         </main>
       </div>

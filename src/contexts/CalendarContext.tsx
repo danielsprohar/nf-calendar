@@ -6,7 +6,7 @@ import React, {
   useReducer,
 } from 'react'
 
-type CalendarView = 'day' | 'week' | 'month' | 'year'
+export type CalendarView = 'day' | 'week' | 'month' | 'year'
 
 export interface CalendarState {
   currentDate: Date
@@ -51,7 +51,7 @@ export const calendarReducer: Reducer<CalendarState, CalendarAction> = (
     case CalendarActions.setCalendarView:
       return {
         ...state,
-        calendarView: action.payload,
+        currentView: action.payload,
       }
     case CalendarActions.previousDate:
       return {

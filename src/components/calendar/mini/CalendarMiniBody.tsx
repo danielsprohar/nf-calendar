@@ -6,9 +6,13 @@ import { getEndDate, getStartDate, isSameDay } from '../../../util/chrono.util'
 
 interface Props {
   date: Date
+  onDateSelected: (date: Date) => void
 }
 
-export default function CalendarMiniBody({ date }: Props) {
+export default function CalendarMiniBody({
+  date,
+  onDateSelected: onDateSelect,
+}: Props) {
   const dispatch = useCalendarDispatch()
   const today = new Date(new Date().setHours(0, 0, 0, 0))
   const startDate = getStartDate(date)
@@ -55,7 +59,7 @@ export default function CalendarMiniBody({ date }: Props) {
             aria-label={day.toDateString()}
             className="px-2 py-1 text-center"
             key={day.toISOString()}
-            onClick={() => handleSelectedDate(day)}
+            onClick={() => onDateSelect(day)}
           >
             <div
               className={`-ml-1 w-6 h-full rounded-full ${styles} ${

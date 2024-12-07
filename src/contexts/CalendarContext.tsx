@@ -20,6 +20,7 @@ export const CalendarActions = Object.freeze({
   previousMonth: 'previous month',
   nextDate: 'next date',
   nextMonth: 'next month',
+  selectDate: 'select date',
 })
 
 interface Action {
@@ -44,7 +45,6 @@ export const calendarReducer: Reducer<CalendarState, CalendarAction> = (
   state,
   action
 ) => {
-  console.log('action', action)
   switch (action.type) {
     case CalendarActions.setDate:
       return {
@@ -81,6 +81,11 @@ export const calendarReducer: Reducer<CalendarState, CalendarAction> = (
       return {
         ...state,
         currentDate: getNextDate(new Date(state.currentDate), 'month'),
+      }
+    case CalendarActions.selectDate:
+      return {
+        currentDate: new Date(action.payload),
+        currentView: 'day',
       }
     default:
       return state

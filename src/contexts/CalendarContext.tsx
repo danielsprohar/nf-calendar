@@ -33,7 +33,7 @@ interface CalendarAction extends Action {
 
 const initialState: CalendarState = {
   currentDate: new Date(),
-  currentView: 'month',
+  currentView: 'day',
 }
 // Context
 export const CalendarContext = createContext<CalendarState>(initialState)

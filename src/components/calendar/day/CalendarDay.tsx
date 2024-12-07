@@ -1,7 +1,11 @@
-import { useCalendar } from '../../../contexts/CalendarContext'
+import CalendarDayBody from './CalendarDayBody'
+import CalendarDayHeader from './CalendarDayHeader'
 
 export default function CalendarDay() {
-  const calendar = useCalendar()
-
-  return <div>{calendar.currentView}</div>
+  return (
+    <>
+      <CalendarDayHeader />
+      <CalendarDayBody />
+    </>
+  )
 }

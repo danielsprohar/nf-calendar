@@ -12,8 +12,12 @@ export default function CalendarMonthBody() {
     month: 'short',
   })
 
-  for (let i = new Date(startDate); i <= endDate; i.setDate(i.getDate() + 1)) {
-    days.push(new Date(i))
+  for (
+    let currentDate = new Date(startDate);
+    currentDate <= endDate;
+    currentDate.setDate(currentDate.getDate() + 1)
+  ) {
+    days.push(new Date(currentDate))
   }
 
   return (
@@ -25,13 +29,13 @@ export default function CalendarMonthBody() {
             className="w-full h-full border-[0.5px] border-zinc-100 dark:border-zinc-800"
           >
             {/* Header  */}
-            <div className="px-2 py-1 text-center">
+            <div className="px-2 py-1 text-center text-sm">
               <div
                 className={`${
                   isSameDay(today, day) &&
                   'rounded-full bg-zinc-900 text-white dark:bg-zinc-200 dark:text-black'
                 } ${
-                  today.getMonth() !== day.getMonth() &&
+                  calendar.currentDate.getMonth() !== day.getMonth() &&
                   'text-zinc-600 dark:text-zinc-400'
                 }`}
               >

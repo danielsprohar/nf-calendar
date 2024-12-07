@@ -21,7 +21,7 @@ export default function CalendarMiniBody() {
   }
 
   return (
-    <div className="flex-1 grid grid-cols-7 grid-rows-5 text-sm">
+    <div className="flex-1 grid grid-cols-7 grid-rows-5 text-xs">
       {days.map((day) => (
         <button
           aria-label={day.toDateString()}
@@ -34,7 +34,7 @@ export default function CalendarMiniBody() {
                 ? '-ml-1 w-6 h-full rounded-full bg-zinc-900 text-white dark:bg-zinc-200 dark:text-black'
                 : ''
             } ${
-              today.getMonth() !== day.getMonth() &&
+              calendar.currentDate.getMonth() !== day.getMonth() &&
               'text-zinc-600 dark:text-zinc-400'
             }`}
           >

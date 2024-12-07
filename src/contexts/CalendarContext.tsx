@@ -17,7 +17,9 @@ export const CalendarActions = Object.freeze({
   setDate: 'set date',
   setCalendarView: 'set calendar view',
   previousDate: 'previous date',
+  previousMonth: 'previous month',
   nextDate: 'next date',
+  nextMonth: 'next month',
 })
 
 interface Action {
@@ -42,6 +44,7 @@ export const calendarReducer: Reducer<CalendarState, CalendarAction> = (
   state,
   action
 ) => {
+  console.log('action', action)
   switch (action.type) {
     case CalendarActions.setDate:
       return {
@@ -56,12 +59,28 @@ export const calendarReducer: Reducer<CalendarState, CalendarAction> = (
     case CalendarActions.previousDate:
       return {
         ...state,
-        currentDate: getPreviousDate(state.currentDate, state.currentView),
+        currentDate: getPreviousDate(
+          new Date(state.currentDate),
+          state.currentView
+        ),
       }
     case CalendarActions.nextDate:
       return {
         ...state,
-        currentDate: getNextDate(state.currentDate, state.currentView),
+        currentDate: getNextDate(
+          new Date(state.currentDate),
+          state.currentView
+        ),
+      }
+    case CalendarActions.previousMonth:
+      return {
+        ...state,
+        currentDate: getPreviousDate(new Date(state.currentDate), 'month'),
+      }
+    case CalendarActions.nextMonth:
+      return {
+        ...state,
+        currentDate: getNextDate(new Date(state.currentDate), 'month'),
       }
     default:
       return state
@@ -84,13 +103,13 @@ function getPreviousDate(currentDate: Date, currentView: CalendarView): Date {
 function getNextDate(currentDate: Date, currentView: CalendarView): Date {
   switch (currentView) {
     case 'day':
-      return new Date(currentDate.setDate(currentDate.getDate() - 1))
+      return new Date(currentDate.setDate(currentDate.getDate() + 1))
     case 'week':
-      return new Date(currentDate.setDate(currentDate.getDate() - 7))
+      return new Date(currentDate.setDate(currentDate.getDate() + 7))
     case 'month':
-      return new Date(currentDate.setMonth(currentDate.getMonth() - 1))
+      return new Date(currentDate.setMonth(currentDate.getMonth() + 1))
     case 'year':
-      return new Date(currentDate.setFullYear(currentDate.getFullYear() - 1))
+      return new Date(currentDate.setFullYear(currentDate.getFullYear() + 1))
   }
 }
 

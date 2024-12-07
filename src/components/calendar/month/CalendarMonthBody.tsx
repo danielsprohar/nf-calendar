@@ -1,12 +1,11 @@
-import { useState } from 'react'
-import { getStartDate, getEndDate, isSameDay } from '../../../util/chrono.util'
+import { useCalendar } from '../../../contexts/CalendarContext'
+import { getEndDate, getStartDate, isSameDay } from '../../../util/chrono.util'
 
 export default function CalendarMonthBody() {
-  // TODO: Use calendar context to get the current calendar date
-  const [date] = useState(new Date(new Date().setHours(0, 0, 0, 0)))
-  const [today] = useState(new Date(new Date().setHours(0, 0, 0, 0)))
-  const startDate = getStartDate(date)
-  const endDate = getEndDate(date)
+  const calendar = useCalendar()
+  const today = new Date(new Date().setHours(0, 0, 0, 0))
+  const startDate = getStartDate(calendar.currentDate)
+  const endDate = getEndDate(calendar.currentDate)
   const days: Date[] = []
   const firstOfMonthFormatter = new Intl.DateTimeFormat('en-US', {
     day: 'numeric',

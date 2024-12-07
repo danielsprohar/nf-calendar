@@ -4,6 +4,7 @@ import CalendarMiniHeader from './CalendarMiniHeader'
 
 export default function CalendarMini() {
   const calendar = useCalendar()
+
   function handleDateSelected(date: Date) {
     console.log(date)
   }
@@ -13,6 +14,7 @@ export default function CalendarMini() {
       <CalendarMiniBody
         date={calendar.currentDate}
         onDateSelected={handleDateSelected}
+        className="text-xs"
       />
     </div>
   )

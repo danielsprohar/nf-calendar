@@ -1,19 +1,18 @@
-import {
-  CalendarActions,
-  useCalendarDispatch,
-} from '../../../contexts/CalendarContext'
 import { getEndDate, getStartDate, isSameDay } from '../../../util/chrono.util'
 
 interface Props {
   date: Date
+  showActive?: boolean
+  className?: string
   onDateSelected: (date: Date) => void
 }
 
 export default function CalendarMiniBody({
   date,
   onDateSelected: onDateSelect,
+  className = '',
+  showActive = true,
 }: Props) {
-  const dispatch = useCalendarDispatch()
   const today = new Date(new Date().setHours(0, 0, 0, 0))
   const startDate = getStartDate(date)
   const endDate = getEndDate(date)
@@ -31,46 +30,39 @@ export default function CalendarMiniBody({
     days.push(new Date(date))
   }
 
-  function handleSelectedDate(date: Date) {
-    dispatch({
-      type: CalendarActions.selectDate,
-      payload: date,
-    })
-  }
-
   return (
-    <div className="flex-1 grid grid-cols-7 grid-rows-5 text-xs">
+    <div className={`flex-1 grid grid-cols-7 grid-rows-5 ${className}`}>
       {days.map((day) => {
         const isToday = isSameDay(today, day)
         const isCurrentDate = isSameDay(date, day)
-        const active = 'bg-zinc-900 text-white dark:bg-zinc-200 dark:text-black'
+        const active =
+          'rounded-full bg-red-600 text-white dark:bg-red-500 dark:text-black'
 
         let styles = ''
-        if (isToday && !isCurrentDate) {
-          styles = 'text-red-500 dark:text-red-400'
-        } else {
-          if ((isCurrentDate && isToday) || isCurrentDate) {
+        if (showActive) {
+          if (isToday && isCurrentDate) {
+            styles = active
+          } else if (isToday && !isCurrentDate) {
+            styles = 'text-red-500 dark:text-red-400'
+          } else if (isCurrentDate) {
             styles = active
           }
+        }
+
+        if (date.getMonth() !== day.getMonth()) {
+          styles += ' text-zinc-600 dark:text-zinc-400'
         }
 
         return (
           <button
             aria-label={day.toDateString()}
-            className="px-2 py-1 text-center"
+            className={`px-2 py-1 text-center ${styles}`}
             key={day.toISOString()}
             onClick={() => onDateSelect(day)}
           >
-            <div
-              className={`-ml-1 w-6 h-full rounded-full ${styles} ${
-                date.getMonth() !== day.getMonth() &&
-                'text-zinc-600 dark:text-zinc-400'
-              }`}
-            >
-              {day.getDate() === 1
-                ? firstOfMonthFormatter.format(day)
-                : day.getDate()}
-            </div>
+            {day.getDate() === 1
+              ? firstOfMonthFormatter.format(day)
+              : day.getDate()}
           </button>
         )
       })}

@@ -2,27 +2,43 @@ import { useCalendar } from '../../contexts/CalendarContext'
 import CalendarToolbar from './CalendarToolbar'
 
 export default function CalendarHeader() {
-  const calendar = useCalendar()
-  const monthFormatter = new Intl.DateTimeFormat('en-US', {
+  const dayViewFormatter = new Intl.DateTimeFormat('en-US', {
+    day: 'numeric',
     month: 'long',
-  })
-  const yearFormatter = new Intl.DateTimeFormat('en-US', {
     year: 'numeric',
   })
+
+  const yearViewFormatter = new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+  })
+  const defaultFormatter = new Intl.DateTimeFormat('en-US', {
+    month: 'long',
+    year: 'numeric',
+  })
+
+  function renderTitle() {
+    const calendar = useCalendar()
+
+    switch (calendar.currentView) {
+      case 'day':
+        return dayViewFormatter.format(calendar.currentDate)
+      case 'year':
+        return yearViewFormatter.format(calendar.currentDate)
+      default:
+        return defaultFormatter.format(calendar.currentDate)
+    }
+  }
 
   return (
     <div className="px-4 py-1 flex flex-col gap-y-3">
       <CalendarToolbar />
+
       <div className="flex items-center justify-between">
         <div
           role="heading"
-          className="text-2xl"
+          className="text-2xl font-bold"
         >
-          <span className="font-bold">
-            {monthFormatter.format(calendar.currentDate)}
-          </span>
-          &nbsp;
-          <span>{yearFormatter.format(calendar.currentDate)}</span>
+          {renderTitle()}
         </div>
 
         <div className="flex items-center justify-between gap-x-1">

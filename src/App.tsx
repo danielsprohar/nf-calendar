@@ -1,6 +1,5 @@
-import CalendarHeader from './components/calendar/CalendarHeader'
+import Calendar from './components/calendar/Calendar'
 import CalendarMini from './components/calendar/mini/CalendarMini'
-import CalendarMonth from './components/calendar/month/CalendarMonth'
 import { CalendarProvider } from './contexts/CalendarContext'
 
 function App() {
@@ -16,8 +15,7 @@ function App() {
         </div>
         {/* Main */}
         <main className="flex-1 flex flex-col">
-          <CalendarHeader />
-          <CalendarMonth />
+          <Calendar />
         </main>
       </div>
     </CalendarProvider>
